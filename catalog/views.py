@@ -16,7 +16,3 @@ def contact(request):
 
         print(f'{name} ({email}): {message}')
     return render(request, 'catalog/contact.html')
-
-
-
-
