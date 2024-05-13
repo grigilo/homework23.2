@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'catalog/base.html' %}
 {% load my_tags %}
 {% block content %}
 
@@ -6,7 +6,7 @@
         <div class="container">
 
             <div class="row">
-                {% for prod in products %}
+                {% for prod in object_list %}
                 <div class="col-md-4">
                     <div class="card mb-4 box-shadow">
                         <img class="card-img-top" src="{{ prod.image | media_filter }}">
