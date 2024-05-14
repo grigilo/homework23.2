@@ -1,4 +1,4 @@
-{% extends 'catalog/base.html' %}
+{% extends 'blogs/base.html' %}
 {% block content %}
 {% load my_tags %}
 
@@ -6,11 +6,11 @@
     <div class="row">
 
 
-        <div class="col-6">
+        <div class="col-3">
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">
-                        Блог "{{ object.title }}"
+                        "{{ object.title }}" ({{ object.slug }})
                     </h3>
                 </div>
                 <div class="card-body">
@@ -18,7 +18,13 @@
                         {{ object.content }}
                     </p>
                 </div>
-                <div class="card-footer"></div>
+                <div class="col-12 mb-5">
+                    <a class="btn btn-primary" href="{% url 'blogs:list' %}" role="button">Назад</a>
+                </div>
+
+                <div class="card-footer">
+                    Просмотры: {{ object.views_count }}
+                </div>
             </div>
 
         </div>
