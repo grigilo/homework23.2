@@ -36,6 +36,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE,
                                  verbose_name='Категория')
     price = models.IntegerField(verbose_name='Цена')
+    count = models.IntegerField(default=0, verbose_name='Количество')
     created_at = models.DateField(auto_now_add=True,
                                   verbose_name='Дата создания')
     updated_at = models.DateField(auto_now=True,
