@@ -4,6 +4,16 @@ NULLABLE = {'blank': True, 'null': True}
 
 
 # Create your models here.
+class User(models.Model):
+    name = models.CharField(max_length=50, verbose_name='Имя')
+    email = models.EmailField(verbose_name='Почта', unique=True)
+
+    def __str__(self):
+        return f'{self.email} ({self.name})'
+
+    class Meta:
+        verbose_name = 'пользователь'
+        verbose_name_plural = 'пользователи'
 
 
 class Category(models.Model):
