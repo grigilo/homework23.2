@@ -5,6 +5,7 @@ from django.views.generic import CreateView, ListView, DetailView, UpdateView, \
     DeleteView
 from pytils.translit import slugify
 
+from blogs.forms import BlogForm
 from blogs.models import Blog
 from order.services import send_order_email, send_max_count_email
 
@@ -12,7 +13,7 @@ from order.services import send_order_email, send_max_count_email
 # Create your views here.
 class BlogCreateView(CreateView):
     model = Blog
-    fields = ('title', 'content',)
+    form_class = BlogForm
     success_url = reverse_lazy('blogs:list')
 
     def form_valid(self, form):
@@ -25,7 +26,7 @@ class BlogCreateView(CreateView):
 
 class BlogUpdateView(UpdateView):
     model = Blog
-    fields = ('title', 'content',)
+    form_class = BlogForm
 
     # success_url = reverse_lazy('blogs:list')
 

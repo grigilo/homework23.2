@@ -4,19 +4,10 @@ from django.views.generic import ListView, DetailView
 from catalog.models import Product
 
 
-# def index(request):
-#     #return render(request, 'catalog/index.html')
-#     return render(request, 'base.html')
 
-# def product_list(request):
-#     products = Product.objects.all()
-#     context = {"products": products}
-#     return render(request, 'product_list.html', context)
 class ProductListView(ListView):
     model = Product
 
-    # app_name/<model_name>_<action>
-    # catalog/product_list.html
 
 
 class ProductDetailView(DetailView):
