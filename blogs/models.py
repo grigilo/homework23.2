@@ -22,3 +22,23 @@ class Blog(models.Model):
     class Meta:
         verbose_name = 'блог'
         verbose_name_plural = 'блоги'
+
+
+class Release(models.Model):
+    blog = models.ForeignKey(Blog, related_name="releases",
+                             on_delete=models.CASCADE, null=True,
+                             blank=True, verbose_name='блог')
+
+    release_number = models.CharField(max_length=100,
+                                      verbose_name='номер релиза')
+    release_title = models.CharField(max_length=100,
+                                     verbose_name='название релиза')
+    release_content = models.TextField(**NULLABLE, verbose_name='содержимое')
+    activated = models.BooleanField(default=True, verbose_name='активен')
+
+    def __str__(self):
+        return f'{self.release_title}'
+
+    class Meta:
+        verbose_name = 'Релиз'
+        verbose_name_plural = 'Релизы'

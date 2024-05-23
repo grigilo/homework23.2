@@ -1,6 +1,6 @@
 from django.forms import ModelForm, forms
 
-from blogs.models import Blog
+from blogs.models import Blog, Release
 
 
 class BlogForm(ModelForm):
@@ -31,3 +31,9 @@ class BlogForm(ModelForm):
                     'криптовалюта, крипта, биржа, дешево, бесплатно, '
                     'обман, полиция, радар')
         return content
+
+
+class ReleaseForm(ModelForm):
+    class Meta:
+        model = Release
+        fields = "__all__"
