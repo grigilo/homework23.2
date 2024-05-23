@@ -36,4 +36,5 @@ class BlogForm(ModelForm):
 class ReleaseForm(ModelForm):
     class Meta:
         model = Release
-        fields = "__all__"
+        fields = (
+            'release_number', 'release_title', 'release_content', 'activated',)

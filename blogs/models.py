@@ -29,11 +29,14 @@ class Release(models.Model):
                              on_delete=models.CASCADE, null=True,
                              blank=True, verbose_name='блог')
 
-    release_number = models.CharField(max_length=100,
+    release_number = models.CharField(max_length=100, null=True,
+                                      blank=True,
                                       verbose_name='номер релиза')
-    release_title = models.CharField(max_length=100,
+    release_title = models.CharField(max_length=100, null=True,
+                                     blank=True,
                                      verbose_name='название релиза')
-    release_content = models.TextField(**NULLABLE, verbose_name='содержимое')
+    release_content = models.TextField(null=True,
+                                       blank=True, verbose_name='содержимое')
     activated = models.BooleanField(default=True, verbose_name='активен')
 
     def __str__(self):
