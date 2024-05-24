@@ -1,9 +1,19 @@
-from django.forms import ModelForm, forms
+from django.forms import ModelForm, forms, BooleanField
 
 from blogs.models import Blog, Release
 
 
-class BlogForm(ModelForm):
+class StyleFormMixin:
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for fild_name, fild in self.fields.items():
+            if isinstance(fild, BooleanField):
+                fild.widget.attrs['class'] = 'form-check-input'
+            else:
+                fild.widget.attrs['class'] = 'form-control'
+
+
+class BlogForm(StyleFormMixin, ModelForm):
     class Meta:
         model = Blog
         fields = ('title', 'content', 'image', 'is_published',)
@@ -33,7 +43,7 @@ class BlogForm(ModelForm):
         return content
 
 
-class ReleaseForm(ModelForm):
+class ReleaseForm(StyleFormMixin, ModelForm):
     class Meta:
         model = Release
         fields = (

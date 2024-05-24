@@ -4,7 +4,7 @@
 
 
 <div class="col-12">
-    <div class="row" method="post" enctype="multipart/form-data">
+    <form class="row" method="post" enctype="multipart/form-data">
         <div class="col-6">
             <div class="card">
                 <div class="card-header">
@@ -19,18 +19,16 @@
 
                 </div>
                 <div class="card-body">
-                    <form method="post">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <button type="submit" class="btn btn-success">
-                            {% if object %}
-                            Сохранить
-                            {% else %}
-                            Создать
-                            {% endif %}
-                        </button>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-success">
+                        {% if object %}
+                        Сохранить
+                        {% else %}
+                        Создать
+                        {% endif %}
+                    </button>
                         <a href="{% url 'blogs:list' %}" class="btn btn-warning">Отмена</a>
-                    </form>
                 </div>
             </div>
         </div>
@@ -41,7 +39,6 @@
                         Редактирование статьи
                     </h3>
                     Следующий релиз
-
                 </div>
                 <div class="card-body">
                     {{ formset.management_form }}
@@ -51,7 +48,7 @@
                 </div>
             </div>
         </div>
-
-    </div>
+        </form>
+    </form>
 </div>
 {% endblock %}
