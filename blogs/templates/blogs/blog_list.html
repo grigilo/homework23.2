@@ -7,9 +7,11 @@
 
 
     <div class="container">
+        {% if user.is_authenticated %}
         <div class="mb-5">
             <a class="btn btn-primary" href="{% url 'blogs:create' %}" role="button">Добавить пост</a>
         </div>
+        {% endif %}
         <div class="row">
             {% for object in object_list %}
             <div class="col-md-4">
@@ -28,6 +30,14 @@
                             </div>
 
                         </div>
+                    </div>
+                    <div class="card-footer">
+                        {% if object.author == None %}
+                        Автор: Аноним
+                        {% else %}
+                        Автор: {{ object.author }}
+                        {% endif %}
+
                     </div>
                 </div>
             </div>

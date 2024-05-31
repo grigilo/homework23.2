@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import inlineformset_factory
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
@@ -12,12 +13,16 @@ from order.services import send_order_email, send_max_count_email
 
 
 # Create your views here.
-class BlogCreateView(CreateView):
+class BlogCreateView(CreateView, LoginRequiredMixin):
     model = Blog
     form_class = BlogForm
     success_url = reverse_lazy('blogs:list')
 
     def form_valid(self, form):
+        post = form.save()
+        user = self.request.user
+        post.author = user
+        post.save()
         if form.is_valid():
             new_post = form.save()
             new_post.slug = slugify(new_post.title)

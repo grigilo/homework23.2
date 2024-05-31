@@ -1,6 +1,7 @@
 from django.db import models
 
 from catalog.models import NULLABLE
+from users.models import User
 
 
 class Blog(models.Model):
@@ -15,6 +16,8 @@ class Blog(models.Model):
     is_published = models.BooleanField(default=True,
                                        verbose_name='опубликован')
     views_count = models.IntegerField(default=0, verbose_name='просмотры')
+    author = models.ForeignKey(User, verbose_name="автор", **NULLABLE,
+                               on_delete=models.CASCADE,)
 
     def __str__(self):
         return f'{self.title}'
