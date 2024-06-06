@@ -1,5 +1,4 @@
 from django.urls import path
-
 from order.apps import OrderConfig
 from order.views import OrderCreateView
 

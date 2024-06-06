@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+DOMAIN_NAME = 'http://localhost:8000'
 # Application definition
 
 INSTALLED_APPS = [
@@ -122,9 +123,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = (
-    BASE_DIR / 'static',
-)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'

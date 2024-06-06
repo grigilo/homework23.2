@@ -8,3 +8,13 @@ class UserRegisterForm(StyleFormMixin, UserCreationForm):
     class Meta:
         model = User
         fields = ('email', 'password1', 'password2')
+
+
+class UserRestorePassForm(StyleFormMixin, UserCreationForm):
+    """
+    Форма для восстановления пароля.
+    """
+
+    class Meta:
+        model = User
+        fields = ('email', 'password',)

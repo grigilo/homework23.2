@@ -7,7 +7,9 @@ from config import settings
 def send_order_email(order_item):
     send_mail(
         'Заявка на покупку продукта',
-        f'{order_item.name} ({order_item.email}) заказал продукт {order_item.product.name} стоимостью {order_item.product.price}. Сообщение: {order_item.message}',
+        f'{order_item.name} ({order_item.email}) заказал продукт '
+        f'{order_item.product.name} стоимостью {order_item.product.price}. '
+        f'Сообщение: {order_item.message}',
         settings.EMAIL_HOST_USER,
         [order_item.email]
     )

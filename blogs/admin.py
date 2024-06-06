@@ -13,6 +13,6 @@ class BlogAdmin(admin.ModelAdmin):
 @admin.register(Release)
 class ReleaseAdmin(admin.ModelAdmin):
     list_display = (
-    'pk', 'blog', 'release_number', 'release_title', 'activated')
+        'pk', 'blog', 'release_number', 'release_title', 'activated')
     list_filter = ('activated',)
     search_fields = ('release_title',)
