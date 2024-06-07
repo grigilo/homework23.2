@@ -41,6 +41,8 @@ class Product(models.Model):
                                   verbose_name='Дата создания')
     updated_at = models.DateField(auto_now=True,
                                   verbose_name='Дата последнего изменения')
+    publish = models.BooleanField(default=True,
+                                  verbose_name='опубликован')
 
     # manufactured_at = models.DateField(**NULLABLE,
     #                                    verbose_name="Дата производства")
@@ -51,3 +53,4 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'продукт'
         verbose_name_plural = 'продукты'
+

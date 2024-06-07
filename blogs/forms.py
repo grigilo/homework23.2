@@ -16,7 +16,9 @@ class StyleFormMixin:
 class BlogForm(StyleFormMixin, ModelForm):
     class Meta:
         model = Blog
-        fields = ('title', 'content', 'image', 'is_published',)
+        fields = (
+            'title', 'content', 'description', 'image', 'is_published',
+            'author',)
 
     def clean_title(self):
         title = self.cleaned_data['title']
@@ -41,6 +43,12 @@ class BlogForm(StyleFormMixin, ModelForm):
                     'криптовалюта, крипта, биржа, дешево, бесплатно, '
                     'обман, полиция, радар')
         return content
+
+
+class BlogModeratorForm(StyleFormMixin, ModelForm):
+    class Meta:
+        model = Blog
+        fields = ('description', 'author', 'is_published',)
 
 
 class ReleaseForm(StyleFormMixin, ModelForm):
