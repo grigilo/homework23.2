@@ -1,0 +1,54 @@
+{% extends 'blogs/base.html' %}
+
+{% block content %}
+
+
+<div class="col-12">
+    <form class="row" method="post" enctype="multipart/form-data">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        Редактирование статьи
+                    </h3>
+                    {% if object %}
+                    "{{ object.title }}"
+                    {% else %}
+                    Создание поста
+                    {% endif %}
+
+                </div>
+                <div class="card-body">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-success">
+                        {% if object %}
+                        Сохранить
+                        {% else %}
+                        Создать
+                        {% endif %}
+                    </button>
+                        <a href="{% url 'blogs:list' %}" class="btn btn-warning">Отмена</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        Редактирование статьи
+                    </h3>
+                    Следующий релиз
+                </div>
+                <div class="card-body">
+                    {{ formset.management_form }}
+                    {% for form in formset.forms %}
+                    {{ form.as_p }}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        </form>
+    </form>
+</div>
+{% endblock %}

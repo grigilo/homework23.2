@@ -1,0 +1,41 @@
+{% extends 'catalog/base.html' %}
+{% load my_tags %}
+{% block content %}
+
+<div class="album py-5 bg-light">
+    <div class="container">
+
+        <div class="row">
+            {% for prod in object_list %}
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                    <img class="card-img-top" src="{{ prod.image | media_filter }}">
+                    <div class="card-body">
+                        <p class="card-text"><b>{{ prod.name }}</b></p>
+                        <p class="card-text">Цена: {{ prod.price }} ₽</p>
+                        <p class="card-text">Наличие на складе:
+                            {% if prod.count == 0 %}
+                                Товар закончился.
+                            {% else %}
+                                {{ prod.count }} шт.
+                            {% endif %}
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a href="{% url 'catalog:product_detail' prod.pk %}"
+                                   class="btn btn-sm btn-outline-secondary">Обзор</a>
+                                <a href="{% url 'order:create' prod.pk %}" type="button"
+                                   class="btn btn-sm btn-outline-secondary">Отправить заявку на покупку</a>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+{% endblock %}
