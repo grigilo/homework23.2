@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.forms import inlineformset_factory
 from django.shortcuts import render
@@ -10,6 +11,7 @@ from pytils.translit import slugify
 
 from blogs.forms import BlogForm, ReleaseForm, BlogModeratorForm
 from blogs.models import Blog, Release
+from config import settings
 from order.services import send_order_email, send_max_count_email
 
 
@@ -72,7 +74,7 @@ class BlogUpdateView(LoginRequiredMixin, UpdateView):
             return BlogForm
         if user.has_perm('blogs.can_edit_description') and user.has_perm(
                 'blogs.can_edit_author') and user.has_perm(
-                'blogs.can_cancel_is_published'):
+            'blogs.can_cancel_is_published'):
             return BlogModeratorForm
         raise PermissionDenied
 
