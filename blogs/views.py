@@ -11,6 +11,7 @@ from pytils.translit import slugify
 
 from blogs.forms import BlogForm, ReleaseForm, BlogModeratorForm
 from blogs.models import Blog, Release
+from blogs.services import get_blogs_from_cache
 from config import settings
 from order.services import send_order_email, send_max_count_email
 
@@ -82,10 +83,14 @@ class BlogUpdateView(LoginRequiredMixin, UpdateView):
 class BlogListView(ListView):
     model = Blog
 
-    def get_queryset(self, *args, **kwargs):
-        queryset = super().get_queryset(*args, **kwargs)
-        queryset = queryset.filter(is_published=True)
-        return queryset
+    def get_queryset(self):
+        return get_blogs_from_cache()
+
+
+    # def get_queryset(self, *args, **kwargs):
+    #     queryset = super().get_queryset(*args, **kwargs)
+    #     queryset = queryset.filter(is_published=True)
+    #     return queryset
 
 
 class BlogDetailView(DetailView):
